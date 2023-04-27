@@ -4,6 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+enum State
+{
+    stop,
+    run,
+    dig,
+    bring
+}
+
 namespace assignment2
 {
     internal class Program
@@ -20,21 +28,27 @@ namespace assignment2
             syoberu.Bring();
 
             Console.WriteLine(syoberu.status);
+            
         }
     }
 
     class Car
     {
-        public int status { get; protected set; }
+        public State status { get; protected set; }
 
         public void Run()
         {
-            status = 0;
+            status = State.run;
         }
 
         public void Stop()
         {
-            status = 1;
+            status = State.stop;
+        }
+        
+        public void ShowCurrentState()
+        {
+            Console.WriteLine(status);
         }
     }
 
@@ -42,12 +56,12 @@ namespace assignment2
     {
         public void Dig()
         {
-            status = 2;
+            status = State.dig;
         }
 
         public void Bring()
         {
-            status = 3;
+            status = State.bring;
         }
     }
 }
